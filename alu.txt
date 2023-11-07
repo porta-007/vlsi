@@ -1,0 +1,37 @@
+begin
+
+process (a, b, mode)
+
+begin
+
+case mode is
+
+when "000" =>y<= NOT a;
+
+when"001" =>y<=a AND b;
+
+when"010" =>y<=a OR b;
+
+when"111" =>y<=a NOR b;
+
+when"011" =>y<=a XOR b;
+
+when"100" =>y<-a NAND b;
+
+when others =>null;
+
+end case;
+
+end process;
+
+end Behavioral;
+
+TeEST BENCH........
+
+begin
+
+a<="001"; b<="010"; mode<="000"; wait for 10 ns; mode<="001"; wait for 10 ns; mode<="010"; wait for 10 ns; mode<="011"; wait for 10 ns; mode<="100"; wait for 10 ns; mode<="111"; wait for 10 ns;
+
+-- hold reset state for 100 ns. wait for 100 ns;
+
+wait; end process
